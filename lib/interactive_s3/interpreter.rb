@@ -15,6 +15,9 @@ module InteractiveS3
 
     def execute(input)
       build_command(input).execute
+    rescue CommandError => e
+      puts e.class, e.message, e.backtrace.join("\n")
+      true
     end
 
     private

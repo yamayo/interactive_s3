@@ -25,6 +25,9 @@ module InteractiveS3
           stack << segment
         end
       rescue => e
+        raise CommandError.new(e).tap {|ex|
+          ex.set_backtrace(e.backtrace)
+        }
       end until scanner.eos?
 
       stack
