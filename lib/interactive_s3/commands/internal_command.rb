@@ -40,7 +40,7 @@ module InteractiveS3::Commands
 
     class Pwd < Base
       def execute
-        puts s3.current_path
+        puts s3.root? ? '/' : s3.current_path
       end
     end
 
