@@ -3,27 +3,24 @@ module InteractiveS3
     HISTORY_SIZE = 500
 
     def load
-      File.read(history_file_path).lines.each do |command|
-        Readline::HISTORY << command.chomp
-      end
-    rescue Errno::ENOENT
-    end
-
-    def save
-      File.open(history_file_path, 'w') do |file|
-        Readline::HISTORY.to_a.last(history_size).each do |command|
-          file << "#{command}\n"
+      if file_exist?
+        File.read(file_path).each_line do |line|
+          Readline::HISTORY << line.chomp
         end
       end
     end
 
-    private
-
-    def history_file_exists?
-      File.exist?(history_file_path)
+    def save
+      File.write(file_path, Readline::HISTORY.to_a.last(history_size).join("\n"))
     end
 
-    def history_file_path
+    private
+
+    def file_exist?
+      File.exist?(file_path)
+    end
+
+    def file_path
       "#{Dir.home}/.is3_history"
     end
 
