@@ -12,8 +12,13 @@ module InteractiveS3::Commands
     end
 
     def execute
-      raise NotImplementedError,
-        "You must implement #{self.class}##{__method__}"
+      raise NotImplementedError, "You must implement #{self.class}##{__method__}"
+    end
+
+    private
+
+    def argument_size
+      arguments.size
     end
   end
 end
