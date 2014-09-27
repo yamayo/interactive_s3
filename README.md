@@ -1,24 +1,41 @@
-# InteractiveS3
+# Interactive S3
+Interactive S3 is an interactive shell that can be easily extended with commands using a `aws s3` in the [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/index.html).
 
-TODO: Write a gem description
+## Demo
+TODO:
+
+## Requirements
+
+* Ruby (~> 2.0.0)
+* AWS CLI (=> 1.4.0)
 
 ## Installation
 
-Add this line to your application's Gemfile:
+```
+$ gem install interactive_s3
+```
 
-    gem 'interactive_s3'
+## Available commands
 
-And then execute:
+- cd
+- pwd
+- lls
+- exit
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install interactive_s3
+and `aws s3` commands.
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+$ is3
+s3> ls
+2014-08-07 00:22:58 my-bucket
+s3> cd my-bucket
+s3://my-bucket> ls
+2014-08-11 00:23:56          4 .
+2014-08-20 01:31:34          5 foo
+2014-08-10 01:26:36         88 bar.txt
+```
 
 ## Contributing
 
