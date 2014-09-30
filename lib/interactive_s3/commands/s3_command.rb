@@ -60,7 +60,7 @@ module InteractiveS3::Commands
     end
 
     def command_with_arguments
-      arguments << s3.current_path if list_command_with_no_s3_path?
+      arguments << "#{s3.current_path}/" if list_command_with_no_s3_path?
 puts "arguments: #{arguments}"
       ['aws', 's3', sub_command, arguments].flatten
     end
