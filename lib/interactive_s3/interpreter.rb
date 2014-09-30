@@ -10,14 +10,13 @@ module InteractiveS3
 
     def initialize
       @s3 = S3.new
-      @state = Hash.new {|h,k| h[k] = [] }
+      @state = {}
     end
 
     def execute(input)
       build_command(input).execute
     rescue CommandError => e
       puts e.class, e.message, e.backtrace.join("\n")
-      true
     end
 
     private

@@ -6,6 +6,8 @@ module InteractiveS3::Commands
 
     class Chdir < Base
       def execute
+        state[:previous_stack] = []
+
         if target.nil?
           state[:previous_stack] = s3.stack
           s3.reset
