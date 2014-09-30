@@ -1,5 +1,6 @@
 module InteractiveS3
   class History
+    HISTORY_FILE = "#{Dir.home}/.is3_history"
     HISTORY_SIZE = 500
 
     def load
@@ -21,7 +22,7 @@ module InteractiveS3
     end
 
     def file_path
-      "#{Dir.home}/.is3_history"
+      HISTORY_FILE
     end
 
     def history_size
