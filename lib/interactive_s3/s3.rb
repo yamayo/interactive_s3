@@ -24,7 +24,7 @@ module InteractiveS3
     end
 
     def exist?
-      return true if empty?
+      return true if root?
       output, error, status = Open3.capture3('aws', 's3', 'ls', current_path)
       status.success? && (output != '' || (bucket? && output == '' ))
     end
