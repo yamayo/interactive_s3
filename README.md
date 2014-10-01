@@ -1,5 +1,5 @@
-# Interactive S3
-Interactive S3 is an interactive shell that can be easily extended with commands using a `aws s3` in the [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/index.html).
+# InteractiveS3
+InteractiveS3 is an interactive shell that can be easily extended with commands using a `aws s3` in the [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/index.html).
 
 ## Demo
 TODO:
