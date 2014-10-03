@@ -1,3 +1,5 @@
+require 'open3'
+
 module InteractiveS3
   class S3
     attr_accessor :stack
