@@ -1,3 +1,11 @@
-Dir["#{File.dirname(__FILE__)}/**/*.rb"].each do |path|
-  require path
-end
+require 'interactive_s3/cli.rb'
+require 'interactive_s3/command_builder.rb'
+require 'interactive_s3/commands/base.rb'
+require 'interactive_s3/commands/internal_command.rb'
+require 'interactive_s3/commands/s3_command.rb'
+require 'interactive_s3/errors.rb'
+require 'interactive_s3/history.rb'
+require 'interactive_s3/interpreter.rb'
+require 'interactive_s3/s3.rb'
+require 'interactive_s3/s3_path.rb'
+require 'interactive_s3/version.rb'
