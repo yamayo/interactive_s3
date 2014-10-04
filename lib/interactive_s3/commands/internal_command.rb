@@ -36,7 +36,7 @@ module InteractiveS3::Commands
 
     class LocalList < Base
       def execute
-        puts Dir.entries('.')
+        puts Dir.entries('.').delete_if {|file| file =~ /^(.|..)$/ }
       end
     end
 
