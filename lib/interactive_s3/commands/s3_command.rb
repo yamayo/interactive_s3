@@ -40,6 +40,8 @@ module InteractiveS3::Commands
           argument.sub(LOCAL_PATH_PREFIX, '')
         when OPTION_PREFIX
           break
+        when /^help$/
+          argument
         else
           stack = InteractiveS3::S3Path.new(argument, s3.stack).resolve
           "s3://#{stack.join('/')}"
@@ -61,16 +63,19 @@ module InteractiveS3::Commands
 
     def command_with_arguments
       arguments << "#{s3.current_path}/" if list_command_with_no_s3_path?
-puts "arguments: #{arguments}"
       ['aws', 's3', sub_command, arguments].flatten
     end
 
     def list_command_with_no_s3_path?
-      list_command? && !include_s3_path?
+      list_command? && !help_sub_command? && !include_s3_path?
     end
 
     def list_command?
       sub_command == 'ls'
+    end
+
+    def help_sub_command?
+      arguments.include?('help')
     end
 
     def include_s3_path?
