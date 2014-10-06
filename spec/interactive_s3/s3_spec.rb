@@ -18,16 +18,16 @@ describe InteractiveS3::S3 do
   end
 
   describe '#empty?' do
-    context 'when the stack does not exists' do
-      it { expect(s3.empty?).to be_truthy }
-    end
-
     context 'when the stack exists' do
       before do
         s3.stack << 'mybucket' << 'foo' << 'bar'
       end
 
       it { expect(s3.empty?).to be_falsey }
+    end
+
+    context 'when the stack does not exists' do
+      it { expect(s3.empty?).to be_truthy }
     end
   end
 
@@ -49,10 +49,6 @@ describe InteractiveS3::S3 do
       it { expect(s3.bucket?).to be_truthy }
     end
 
-    context 'when the stack does not exists' do
-      it { expect(s3.bucket?).to be_falsey }
-    end
-
     context 'when size of the stack is greater than 1' do
       before do
         s3.stack << 'mybucket' << 'foo'
@@ -60,28 +56,26 @@ describe InteractiveS3::S3 do
 
       it { expect(s3.bucket?).to be_falsey }
     end
+
+    context 'when the stack does not exists' do
+      it { expect(s3.bucket?).to be_falsey }
+    end
   end
 
   describe '#exist?' do
-    context 'when the stack size is empty' do
-      it { expect(s3.exist?).to be_truthy }
+    subject { s3.exist? }
+
+    context 'when the s3 path is root' do
+      it { is_expected.to be_truthy }
     end
 
-    context 'when the stack size is not empty' do
+    context 'when the s3 path isn\'t root' do
       let(:error) { double('error') }
       let(:status) { double('status') }
 
       before do
         allow(Open3).to receive(:capture3).and_return([output, error, status])
-        allow(s3).to receive(:empty?).and_return(false)
-      end
-
-      context 'status is success' do
-        before do
-          allow(status).to receive(:success?).and_return(true)
-        end
-
-        it { expect(s3.exist?).to be_truthy }
+        allow(s3).to receive(:root?).and_return(false)
       end
 
       context 'status is success and output exists' do
@@ -91,18 +85,7 @@ describe InteractiveS3::S3 do
           allow(status).to receive(:success?).and_return(true)
         end
 
-        it { expect(s3.exist?).to be_truthy }
-      end
-
-      context 'status is success and output exists and current path is bucket' do
-        let(:output) { 'output' }
-
-        before do
-          allow(status).to receive(:success?).and_return(true)
-          allow(s3).to receive(:bucket?).and_return(true)
-        end
-
-        it { expect(s3.exist?).to be_truthy }
+        it { is_expected.to be_truthy }
       end
 
       context 'status is success and output does not exists' do
@@ -110,20 +93,28 @@ describe InteractiveS3::S3 do
 
         before do
           allow(status).to receive(:success?).and_return(true)
-          allow(s3).to receive(:bucket?).and_return(false)
         end
 
-        xit { expect(s3.exist?).to be_falsey }
+        it { is_expected.to be_falsey }
       end
 
-      context 'status failed' do
-        let(:output) { 'output' }
+      context 'status is success and current_path is bucket and output exists' do
+        let(:output) { '' }
 
+        before do
+          allow(status).to receive(:success?).and_return(true)
+          allow(s3).to receive(:bucket?).and_return(true)
+        end
+
+        it { is_expected.to be_truthy }
+      end
+
+      context 'status is not success' do
         before do
           allow(status).to receive(:success?).and_return(false)
         end
 
-        xit { expect(s3.exist?).to be_falsey }
+        it { is_expected.to be_falsey }
       end
     end
   end
