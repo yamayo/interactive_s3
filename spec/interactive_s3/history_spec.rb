@@ -40,12 +40,12 @@ describe InteractiveS3::History do
   describe '#save' do
     context 'when the file exists' do
       before do
-        Readline::HISTORY << 'foo'
+        Readline::HISTORY << 'ls' << 'exit'
         history.save
       end
 
       it 'saves the history from Readline to file' do
-        expect(file.each_line.to_a).to eq(['foo'])
+        expect(file.each_line.to_a.each(&:chomp!)).to eq %w(ls exit)
       end
     end
   end

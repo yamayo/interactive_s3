@@ -3,11 +3,13 @@ require 'spec_helper'
 describe InteractiveS3::S3 do
   let(:s3) { described_class.new }
 
+  def stack_to_s3
+    s3.stack << 'mybucket' << 'foo' << 'bar'
+  end
+
   describe '#current_path' do
     context 'when the stack exists' do
-      before do
-        s3.stack << 'mybucket' << 'foo' << 'bar'
-      end
+      before { stack_to_s3 }
 
       it { expect(s3.current_path).to eq('s3://mybucket/foo/bar') }
     end
@@ -19,9 +21,7 @@ describe InteractiveS3::S3 do
 
   describe '#empty?' do
     context 'when the stack exists' do
-      before do
-        s3.stack << 'mybucket' << 'foo' << 'bar'
-      end
+      before { stack_to_s3 }
 
       it { expect(s3.empty?).to be_falsey }
     end
@@ -33,7 +33,7 @@ describe InteractiveS3::S3 do
 
   describe '#reset' do
     before do
-      s3.stack << 'mybucket'
+      stack_to_s3
       s3.reset
     end
 
@@ -50,9 +50,7 @@ describe InteractiveS3::S3 do
     end
 
     context 'when size of the stack is greater than 1' do
-      before do
-        s3.stack << 'mybucket' << 'foo'
-      end
+      before { stack_to_s3 }
 
       it { expect(s3.bucket?).to be_falsey }
     end

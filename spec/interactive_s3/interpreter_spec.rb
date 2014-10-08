@@ -15,7 +15,7 @@ describe InteractiveS3::Interpreter do
       interpreter.execute(input)
     end
 
-    it 'handles parse errors' do
+    it 'handles command error' do
       allow(command).to receive(:execute).and_raise(InteractiveS3::CommandError)
       expect { interpreter.execute(input) }.to output.to_stdout
     end
