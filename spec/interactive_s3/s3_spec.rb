@@ -42,9 +42,7 @@ describe InteractiveS3::S3 do
 
   describe '#bucket?' do
     context 'when size of the stack is 1' do
-      before do
-        s3.stack << 'mybucket'
-      end
+      before { s3.stack << 'mybucket' }
 
       it { expect(s3.bucket?).to be_truthy }
     end

@@ -17,7 +17,7 @@ describe InteractiveS3::CommandBuilder do
       allow(InteractiveS3::Commands::InternalCommand).to receive(:fetch) { command_class }
     end
 
-    it 'creates a command class and initialize it' do
+    it 'creates a command class and initializes it' do
       expect(command_class).to receive(:new).with(context, 'cd', ['-'])
       builder.build
     end
