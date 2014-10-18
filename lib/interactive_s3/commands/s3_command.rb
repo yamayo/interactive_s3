@@ -3,6 +3,7 @@ module InteractiveS3::Commands
     S3_PATH_PREFIX = /^s3:\/\//
     LOCAL_PATH_PREFIX = /^:/
     OPTION_PREFIX = /^--/
+    HELP_SUB_COMMAND = /^help$/
     TARGET_SUB_COMMANDS = %w(mv rb rm).freeze
 
     def initialize(context, name, arguments = [])
@@ -34,14 +35,10 @@ module InteractiveS3::Commands
     def parse_arguments
       arguments[target] = arguments[target].map {|argument|
         case argument
-        when S3_PATH_PREFIX
-          next
+        when S3_PATH_PREFIX, HELP_SUB_COMMAND, OPTION_PREFIX
+          argument
         when LOCAL_PATH_PREFIX
           argument.sub(LOCAL_PATH_PREFIX, '')
-        when OPTION_PREFIX
-          break
-        when /^help$/
-          argument
         else
           stack = InteractiveS3::S3Path.new(argument, s3.stack).resolve
           "s3://#{stack.join('/')}"
