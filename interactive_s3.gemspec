@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["yamayo"]
   spec.email         = ["noorthaven@gmail.com"]
   spec.summary       = %q{An interactive shell for AWS CLI (aws s3)}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/yamayo/interactive_s3"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
