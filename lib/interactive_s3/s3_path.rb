@@ -1,3 +1,5 @@
+require 'strscan'
+
 module InteractiveS3
   class S3Path
     def initialize(target_path, current_stack)
