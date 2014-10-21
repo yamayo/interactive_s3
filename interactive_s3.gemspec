@@ -6,6 +6,7 @@ require 'interactive_s3/version'
 Gem::Specification.new do |spec|
   spec.name          = "interactive_s3"
   spec.version       = InteractiveS3::VERSION
+  spec.executables   = ["is3"]
   spec.authors       = ["yamayo"]
   spec.email         = ["noorthaven@gmail.com"]
   spec.summary       = %q{An interactive shell for AWS CLI (aws s3)}
