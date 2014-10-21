@@ -8,8 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = InteractiveS3::VERSION
   spec.authors       = ["yamayo"]
   spec.email         = ["noorthaven@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{An interactive shell for AWS CLI (aws s3)}
   spec.homepage      = ""
   spec.license       = "MIT"
 
