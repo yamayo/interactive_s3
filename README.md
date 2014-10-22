@@ -1,4 +1,4 @@
-# InteractiveS3 [![Build Status](https://travis-ci.org/yamayo/interactive_s3.svg?branch=master)](https://travis-ci.org/yamayo/interactive_s3)
+# InteractiveS3 [![Build Status](https://travis-ci.org/yamayo/interactive_s3.svg?branch=master)](https://travis-ci.org/yamayo/interactive_s3) [![Code Climate](https://codeclimate.com/github/yamayo/interactive_s3/badges/gpa.svg)](https://codeclimate.com/github/yamayo/interactive_s3)
 InteractiveS3 is an interactive shell that can be easily extended with commands using a `aws s3` in the [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/index.html).
 
 ## Requirements
