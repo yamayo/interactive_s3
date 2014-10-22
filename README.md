@@ -51,11 +51,3 @@ s3://my-bucket> ls
 2014-08-20 01:31:34          5 foo
 2014-10-19 22:37:43         31 bar.txt
 ```
-
-## Contributing
-
-1. Fork it ( http://github.com/<my-github-username>/interactive_s3/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
