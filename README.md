@@ -51,3 +51,8 @@ s3://my-bucket> ls
 2014-08-20 01:31:34          5 foo
 2014-10-19 22:37:43         31 bar.txt
 ```
+
+## Inspired By
+
+* [gitsh](https://github.com/thoughtbot/gitsh)
+* [pry](https://github.com/pry/pry)
