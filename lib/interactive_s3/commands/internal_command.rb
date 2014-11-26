@@ -12,9 +12,7 @@ module InteractiveS3::Commands
           state[:previous_stack] = s3.stack
           s3.reset
           return
-        end
-
-        if target.strip == '-'
+        elsif target.strip == '-'
           s3.stack, state[:previous_stack] = state[:previous_stack], s3.stack
         else
           target.sub!('s3://', '/')
@@ -31,6 +29,10 @@ module InteractiveS3::Commands
 
       def target
         @target ||= arguments.first
+      end
+
+      def previous_stack
+        @previous_stack ||= state.previous_stack
       end
     end
 

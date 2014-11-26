@@ -8,7 +8,6 @@ module InteractiveS3
     end
 
     def resolve
-      scanner = StringScanner.new(target_path.strip)
       stack = current_stack.dup
 
       begin
@@ -38,5 +37,9 @@ module InteractiveS3
     private
 
     attr_reader :current_stack, :target_path
+
+    def scanner
+      @scanner ||= StringScanner.new(target_path.strip)
+    end
   end
 end

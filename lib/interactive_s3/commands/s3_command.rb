@@ -23,8 +23,8 @@ module InteractiveS3::Commands
       puts e.message
       false
     ensure
-      if target_sub_command_and_s3_not_exist?
-        s3.reset
+      if reset_target?
+        s3.reset unless s3.exist?
       end
     end
 
@@ -33,7 +33,7 @@ module InteractiveS3::Commands
     alias sub_command name
 
     def parse_arguments
-      arguments[target] = arguments[target].map {|argument|
+      arguments.map {|argument|
         case argument
         when S3_PATH_PREFIX, HELP_SUB_COMMAND, OPTION_PREFIX
           argument
@@ -44,18 +44,6 @@ module InteractiveS3::Commands
           "s3://#{stack.join('/')}"
         end
       }
-    end
-
-    def target
-      @target ||= if option_first?
-                    argument_size-2..argument_size-1
-                  else
-                    0..1
-                  end
-    end
-
-    def option_first?
-      !!(arguments.first =~ OPTION_PREFIX)
     end
 
     def command_with_arguments
@@ -79,12 +67,8 @@ module InteractiveS3::Commands
       arguments.any? {|argument| argument.match(S3_PATH_PREFIX) }
     end
 
-    def target_sub_command?
+    def reset_target?
       TARGET_SUB_COMMANDS.include?(sub_command)
-    end
-
-    def target_sub_command_and_s3_not_exist?
-      target_sub_command? && !s3.exist?
     end
 
     def wait_for_process(pid)
