@@ -59,6 +59,7 @@ module InteractiveS3::Commands
       lls: LocalList,
       pwd: Pwd,
       exit: Exit,
+      q: Exit,
     }.freeze
   end
 end
