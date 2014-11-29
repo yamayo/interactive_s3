@@ -47,7 +47,7 @@ describe InteractiveS3::Commands::InternalCommand do
   describe described_class::Chdir do
     describe '#execute' do
       before do
-        allow(s3).to receive(:exist?).and_return(true)
+        allow(s3).to receive(:exists?).and_return(true)
         s3.stack << 'mybucket' << 'foo' << 'bar'
       end
 

@@ -58,8 +58,8 @@ describe InteractiveS3::S3 do
     end
   end
 
-  describe '#exist?' do
-    subject { s3.exist? }
+  describe '#exists?' do
+    subject { s3.exists? }
 
     context 'when the s3 path is root' do
       it { is_expected.to be_truthy }
@@ -75,13 +75,13 @@ describe InteractiveS3::S3 do
       end
 
       context 'status is success and output exists' do
-        let(:output) { 'output' }
+        let(:output) { 'output/' }
 
         before do
           allow(status).to receive(:success?).and_return(true)
         end
 
-        it { is_expected.to be_truthy }
+        xit { is_expected.to be_truthy }
       end
 
       context 'status is success and output does not exists' do
