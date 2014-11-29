@@ -21,10 +21,10 @@ $ is3
 
 ### Available commands
 
-- **cd** - Change the current path.
-- **pwd** - Show the current path.
-- **lls** - Show local file list.
-- **exit** - Quit InteractiveS3.
+- **cd** : Change the current path.
+- **pwd** : Show the current path.
+- **lls** : Show local file list.
+- **exit** : Quit InteractiveS3.
 
 And `aws s3` commands.  
 
@@ -41,7 +41,7 @@ s3://my-bucket> lls
 bar.txt
 ```
 
-#### `:` - local file prefix
+A line of input that begins with a ':' will be forwarded to the local path prefix.
 
 ```sh
 s3://my-bucket> cp :bar.txt .
