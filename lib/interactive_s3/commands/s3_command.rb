@@ -24,7 +24,7 @@ module InteractiveS3::Commands
       false
     ensure
       if reset_target?
-        s3.reset unless s3.exist?
+        s3.reset unless s3.exists?
       end
     end
 
@@ -33,7 +33,7 @@ module InteractiveS3::Commands
     alias sub_command name
 
     def parse_arguments
-      arguments.map {|argument|
+      arguments.map! {|argument|
         case argument
         when S3_PATH_PREFIX, HELP_SUB_COMMAND, OPTION_PREFIX
           argument

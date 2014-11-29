@@ -25,10 +25,10 @@ module InteractiveS3
       stack.size == 1
     end
 
-    def exist?
+    def exists?
       return true if root?
       output, error, status = Open3.capture3('aws', 's3', 'ls', current_path)
-      status.success? && (bucket? || output != '' && output.split(/\s/).last == "#{stack.last}/")
+      status.success? && (bucket? || output.split(/\s/).last == "#{stack.last}/")
     end
   end
 end

@@ -20,7 +20,7 @@ module InteractiveS3::Commands
           s3.stack = InteractiveS3::S3Path.new(target, s3.stack).resolve
         end
       ensure
-        unless s3.exist?
+        unless s3.exists?
           s3.stack = state[:previous_stack]
         end
       end
@@ -29,10 +29,6 @@ module InteractiveS3::Commands
 
       def target
         @target ||= arguments.first
-      end
-
-      def previous_stack
-        @previous_stack ||= state.previous_stack
       end
     end
 
