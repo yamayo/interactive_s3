@@ -28,7 +28,7 @@ module InteractiveS3
     def exists?
       return true if root?
       output, error, status = Open3.capture3('aws', 's3', 'ls', current_path)
-      status.success? && (bucket? || output.split(/\s/).last == "#{stack.last}/")
+      status.success? && (bucket? || (output != '' && output.match(/(\S*)\/$/)[1] == stack.last))
     end
   end
 end

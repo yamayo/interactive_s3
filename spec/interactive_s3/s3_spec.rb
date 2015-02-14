@@ -75,13 +75,14 @@ describe InteractiveS3::S3 do
       end
 
       context 'status is success and output exists' do
-        let(:output) { 'output/' }
+        let(:output) { 'bar/' }
 
         before do
+          stack_to_s3
           allow(status).to receive(:success?).and_return(true)
         end
 
-        xit { is_expected.to be_truthy }
+        it { is_expected.to be_truthy }
       end
 
       context 'status is success and output does not exists' do
